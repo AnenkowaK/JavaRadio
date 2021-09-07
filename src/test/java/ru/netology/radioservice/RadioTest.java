@@ -31,17 +31,17 @@ class RadioTest {
     @Test
     public void nextStation() {
         Radio radio = new Radio();
-        radio.currentStation = 10;
+        radio.currentStation = 8;
         radio.nextStation();
-        assertEquals(0, radio.currentStation);
+        assertEquals(9, radio.currentStation);
     }
 
     @Test
     public void previousStation() {
         Radio radio = new Radio();
-        radio.currentStation =0;
+        radio.currentStation =1;
         radio.previousStation();
-        assertEquals(9, radio.currentStation);
+        assertEquals(0, radio.currentStation);
     }
 }
 
