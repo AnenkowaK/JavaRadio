@@ -5,6 +5,7 @@ public class Radio {
     int currentVolume;
     int currentStation;
 
+
     public void increaseVolume() {
         if (currentVolume < 10) {
             currentVolume = currentVolume + 1;
