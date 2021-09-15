@@ -1,45 +1,32 @@
 package ru.netology.radioservice;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
 
-    @Test
-    public void shouldCreate() {
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            " increaseVolume, 8, 9",
+            " increaseVolumeLimit, 10, 10",
+            " decreaseVolume, 5, 4",
+            "decreaseVolumeLimit, 0, 0",
+            "AboveLimitVolume, 11, 0",
+            "BelowLimitVolume, -1, 0"})
+    public void Volume(String testName, int currentVolume, int expected) {
         Radio radio = new Radio();
+        radio.setCurrentVolume(currentVolume);
+        radio.increaseVolume();
+        assertEquals(expected, radio.getCurrentVolume());
     }
 
-    @Test
-    public void increaseVolume() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(8);
-        radio.increaseVolume();
-        assertEquals(9, radio.getCurrentVolume());
-    }
-    @Test
-    public void increaseVolumeLimit() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        radio.increaseVolume();
-        assertEquals(10, radio.getCurrentVolume());
-    }
 
-    @Test
-    public void decreaseVolume() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(5);
-        radio.decreaseVolume();
-        assertEquals(4, radio.getCurrentVolume());
-    }
-    @Test
-    public void decreaseVolumeLimit() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(0);
-        radio.decreaseVolume();
-        assertEquals(0, radio.getCurrentVolume());
-    }
+
+
 
 
     @Test
@@ -83,19 +70,6 @@ class RadioTest {
     public void BelowLimitStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(-1);
-        assertEquals(0, radio.getCurrentStation());
-    }
-    @Test
-    public void AboveLimitVolume() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(11);
-        assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    public void BelowLimitVolume() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(-1);
         assertEquals(0, radio.getCurrentStation());
     }
 

@@ -1,4 +1,4 @@
-package ru.netology.radioservice;
+package ru.netology.domain.constructor;
 
 public class Radio {
 
@@ -8,6 +8,8 @@ public class Radio {
     private int maxStation = 9;
     private int minVolume = 0;
     private int maxVolume = 10;
+
+
 
     public int getCurrentStation() {
         return currentStation;
